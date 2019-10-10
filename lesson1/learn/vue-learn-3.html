@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue绑定事件</title>
+</head>
+<body>
+<div id="app">
+    <h2>当前计数器的值为：{{counter}}</h2>
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+</div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            counter:0
+        },
+        methods:{
+            add:function () {
+                console.log("计数器加1");
+                this.counter++;
+            },
+            sub:function () {
+                console.log("计数器减1");
+                this.counter--;
+            }
+        }
+    });
+</script>
+</html>
