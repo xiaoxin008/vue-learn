@@ -5,6 +5,7 @@
     <title>Vue绑定事件</title>
 </head>
 <body>
+<!--view-->
 <div id="app">
     <h2>当前计数器的值为：{{counter}}</h2>
     <button @click="add">+</button>
@@ -13,11 +14,17 @@
 </body>
 <script src="../js/vue.js"></script>
 <script>
+
+    //model 这里使用的是代理proxy 下面的this才能找到这个对象里的属性
+    var objects = {
+        counter:0
+    };
+
+    //MVVM Model ViewModel Model Model通过ViewModel在View层绑定数据，而View通过ViewModel监听事件修改Model层中的数据
+    //new View 就是ViewModel
     const app = new Vue({
         el:"#app",
-        data:{
-            counter:0
-        },
+        data:objects,
         methods:{
             add:function () {
                 console.log("计数器加1");
@@ -27,6 +34,15 @@
                 console.log("计数器减1");
                 this.counter--;
             }
+        },
+        beforeCreate:function () {
+            console.log("beforeCreate");
+        },
+        created:function () {
+            console.log("create");
+        },
+        mounted:function () {
+            console.log("mounted");
         }
     });
 </script>
