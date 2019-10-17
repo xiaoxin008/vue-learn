@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-bind初试</title>
+</head>
+<body>
+<div id="app">
+  <img v-bind:src="imgPath"/>
+  <a :href="url">百度一下</a>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  var app = new Vue({
+    el:"#app",
+    data:{
+      imgPath:'https://www.baidu.com/img/baidu_jgylogo3.gif',
+      url:'http://www.baidu.com'
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mustache语法</title>
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h2 v-once>{{message}}</h2><!--去除响应式-->
+  <h2 v-html="url"></h2><!--解析html数据-->
+  <h2 v-text="message"></h2><!--不使用mustache语法解析数据-->
+  <h2 v-pre>{{preValue}}</h2><!--不解析mustache语法-->
+  <h2 v-cloak>{{cloakValue}}</h2><!--在Vue解析之前对标签进行样式控制-->
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  setInterval(function () {
+    var app = new Vue({
+      el:"#app",
+      data:{
+        message:"Hello World!",
+        url:"<a href='http://www.baidu.com'>百度一下</a>",
+        preValue:"原生的样子",
+        cloakValue:"斗篷"
+      }
+    });
+  },2000);
+</script>
+</body>
+</html>
