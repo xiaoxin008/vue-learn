@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>v-for与v-bind综合运用</title>
+  <title>v-bind绑定class</title>
   <style>
     .active{
       color:red;
+    }
+    .left{
+      padding-left: 20px;
     }
   </style>
 </head>
 <body>
 <div id="app">
-  <ul>
-    <li v-for="(item,index) in movies" :class="{active:index==activeLine}" @click="changeStatus(index)">{{index}}-{{item}}</li>
-  </ul>
+  <h2 :class="colorClass">{{message}}</h2>
+  <h2 class="title" :class="getClassNames()">{{message}}</h2>
+  <h2 :class="{active:!isRed}">{{message}}</h2>
+  <button @click="changeColor">按钮</button>
+  <h2 v-bind:class="getArrayClasses()">{{message}}</h2>
 </div>
 
 <script src="../js/vue.js"></script>
@@ -21,12 +26,21 @@
   var app = new Vue({
     el:"#app",
     data:{
-      movies:["头文字D","人猿泰山","梁祝","龙之谷"],
-      activeLine: 0
+      message:"Hello World!",
+      colorClass:"active",
+      paddingClass:"left",
+      isRed:true,
+      isLeft:true
     },
     methods:{
-      changeStatus:function (index) {
-        this.activeLine = index;
+      getClassNames:function () {
+        return {active:this.isRed,left:this.isLeft};
+      },
+      changeColor:function () {
+        return this.isRed = !this.isRed;
+      },
+      getArrayClasses:function () {
+        return [this.colorClass,this.paddingClass];
       }
     }
   });
