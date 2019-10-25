@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-bind绑定css 1.直接绑定 2.对象语法 3.数组语法</title>
+</head>
+<body>
+<div id="app">
+  <h2 :style="{color:finalColor,paddingLeft:finalPadding + 'px'}">{{message}}</h2>
+  <h2 :style="myCss()">{{message}}</h2>
+  <h2 :style="myCssArr()">{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  var app = new Vue({
+    el:"#app",
+    data:{
+      message:"Hello World!",
+      finalColor:"red",
+      finalPadding:20,
+      finalBack:"green"
+    },
+    methods:{
+      myCss:function () {
+        return {color: this.finalColor,paddingLeft: this.finalPadding + 'px'};
+      },
+      myCssArr:function () {
+        return [{color:this.finalColor,paddingLeft:this.finalPadding + 'px'},{background:this.finalBack}];
+      }
+    }
+  });
+</script>
+</body>
+</html>

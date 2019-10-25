@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>computed属性的复杂计算</title>
+</head>
+<body>
+<div id="app">
+  <h2>总价格为:{{totalPrice}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  var app = new Vue({
+    el:"#app",
+    data:{
+      books:[{name:'哈利波特1',price:11},{name:'哈利波特2',price:22},{name:'哈利波特3',price:33},{name:'哈利波特4',price:44}],
+    },
+    computed:{
+      totalPrice:function () {
+        let price = 0;
+        for(let book of this.books){
+          price += book.price;
+        }
+        return price;
+      }
+    }
+  });
+</script>
+</body>
+</html>
