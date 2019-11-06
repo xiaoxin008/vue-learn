@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ES6 let的作用域</title>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+<script>
+
+  // 案例一
+  // 因为es5是没有块级作用域的 所以name变量在代码块外也可以访问到 而使用let 则外面访问不到
+  // {
+  //   var name = "案例一";
+  //   console.log(name);
+  // }
+  // console.log(name);
+
+  //案例二
+  //如果es5想运用块级作用域 则 必须使用函数
+  // var func;
+  // if(true){
+  //   func = function(){
+  //     var name = "案例二";
+  //   }
+  // }
+  // console.log(name);
+
+  //案例三
+  //es5 结果为无论点击哪个按钮都为i=5的结果 因为var没有块级作用域 所有绑定的事件所用的i都是同一个变量相当于
+  //i = 5 func1 func2 func3 func4 func5
+  // var objs = document.getElementsByTagName("button");
+  // for(var i = 0;i<objs.length;i++){
+  //   objs[i].addEventListener("click",function () {
+  //     console.log("点击第"+(i+1)+"个按钮!");
+  //   });
+  // }
+  //es5 正确写法 使用立即执行函数及闭包 1.让函数立即执行 取到即时的i变量值 2.闭包 使i拥有块级作用域 相当于
+  // i = 1 func1 i = 2 func2 i = 3 func3 i =4 func4 i = 5 func5
+  // var objs = document.getElementsByTagName("button");
+  // for(var i = 0;i<objs.length;i++){
+  //   (function (i) {
+  //     objs[i].addEventListener("click",function () {
+  //       console.log("点击第"+(i+1)+"个按钮!");
+  //     });
+  //   })(i);
+  // }
+  //es6 写法 因为 let拥有块级作用域 所以可以不使用闭包 相当于
+  // i = 1 func1 i = 2 func2 i = 3 func3 i =4 func4 i = 5 func5
+  var objs = document.getElementsByTagName("button");
+  for(let i = 0;i<objs.length;i++){
+    objs[i].addEventListener("click",function () {
+      console.log("点击第"+(i+1)+"个按钮!");
+    });
+  }
+</script>
+</body>
+</html>

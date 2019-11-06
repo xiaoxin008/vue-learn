@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>computed属性与methods属性比较</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  var app = new Vue({
+    el:"#app",
+    data:{
+      firstName:"Wang",
+      lastName:"Xin"
+    },
+    methods:{
+      getFullName(){
+        //方法每使用一次就会重新调用一次
+        console.log("执行方法");
+        return this.firstName + this.lastName;
+      }
+    },
+    computed:{
+      fullName(){
+        //属性 使用一次后会把这个属性值缓存起来 性能更好
+        console.log("执行属性");
+        return this.firstName + this.lastName;
+      }
+    }
+  });
+</script>
+</body>
+</html>
